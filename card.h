@@ -1,7 +1,7 @@
 #ifndef CARD_H
 #define CARD_H
 
-#include "common.h"
+#include "includes.h"
 
 class Card {
         public:
@@ -17,9 +17,6 @@ class Card {
 
             /*
              *  Used for printing the cards
-             *  
-             *  Marked as friend because it needs to be able to read 
-             *      the properties of the Card class
              */
             friend std::ostream& operator<<(std::ostream& os, const Card& c);
 
@@ -29,11 +26,23 @@ class Card {
             Card(rank r, suit s);
 
             /*
-             * Returns the value of the card
+             * Returns the weighted value of the card
+             *
+             * Marked as const because it is a getter
+             */
+            int getWeightedValue() const;
+
+            /*
+             * Returns the non weighted value of the card
              *
              * Marked as const because it is a getter
              */
             int getValue() const;
+
+            /*
+             * Returns the suit value
+             */
+            int getSuit() const;
 
         private:
             /*
@@ -44,7 +53,7 @@ class Card {
             /*
              * Member variable for the card's suit
              */
-            suit mSuit
+            suit mSuit;
 };
 
 #endif
