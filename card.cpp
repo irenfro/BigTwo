@@ -60,11 +60,16 @@ std::ostream& operator<<(std::ostream& os, const Card& c) {
     const std::string val[] = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
 
     /*
-     * The unicode value for the different suits
-     * Diamonds, Clubs, Hearts, Spades respectivly 
-     * Sample output: ♦, ♣, ♥, ♠
+     * The unicode value for the different suits in black
+     * Diamonds, Clubs, Hearts, Spades respectively 
+     * Sample output: ♦ , ♣ , ♥ , ♠
+     *
+     * The unicode value for the different suits in white is commented out
+     * Diamonds, Clubs, Hearts, Spades respectively 
+     * Sample output: ♢ , ♧ , ♡ , ♤
      */
     const std::string suit[] = {"\u2666", "\u2663", "\u2665", "\u2660"};
+    /*const std::string suit[] = {"\u2662", "\u2667", "\u2661", "\u2664"};*/
 
     os << val[c.getValue() - 1] << suit[c.getSuit() - 1];
 
