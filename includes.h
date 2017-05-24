@@ -9,7 +9,7 @@
  */
 
 #include <algorithm>
-#include <ctime>
+#include <ctime> /* use for randomizer */
 #include <iostream>
 #include <string>
 #include <vector>
