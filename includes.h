@@ -4,7 +4,7 @@
 /*
  *      Common include statements for the classes
  *     
- *      Please try to keep alphabatized
+ *      Please try to keep alphabetized
  * 
  */
 
