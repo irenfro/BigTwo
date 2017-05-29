@@ -9,11 +9,11 @@ OBJ = main.o card.o hand.o player.o deck.o
 
 all: bigtwo
 
-bigtwo:	$(OBJ) $(HEADERS)
-	$(CC) $(CFLAGS) -o bigtwo $(OBJ)
+bigtwo:	$(OBJ) 
+	$(CC) $(CFLAGS) -o bigtwo $^
 
 #Dynamically make the Object Files
-%.o: %.cpp $(HEADERS)
+%.o: %.cpp %.h
 	$(CC) $(CFLAGS) -c $<
 
 clean:
