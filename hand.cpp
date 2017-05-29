@@ -50,3 +50,16 @@ void Hand::clean() {
     }
     mCards.clear();
 }
+
+/*
+ * Returns the number of cards left in the hand
+ *
+ * @params:
+ *      None
+ *
+ * @return:
+ *      the size of the card vector
+ */
+int Hand::getCardsLeft() {
+        return mCards.size();
+}

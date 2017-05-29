@@ -20,6 +20,11 @@ class Hand {
          */
         void clean();
 
+        /*
+         * Returns how many cards are left in the hand
+         */
+        int getCardsLeft();
+
     protected:
         std::vector<Card*> mCards;
 };
