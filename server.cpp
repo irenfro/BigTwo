@@ -2,12 +2,13 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <iostream>
+#include <vector>
 #include <unistd.h>
 
-int main(void) {
+#include "server.hpp"
+
+Server::Server(Config const& config) : m_config(config) {
 	struct sockaddr_in sa;
 	int SocketFD = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (SocketFD == -1) {
@@ -15,10 +16,12 @@ int main(void) {
 		exit(EXIT_FAILURE);
 	}
 
+	m_master = socket_fd;
+
 	memset(&sa, 0, sizeof sa);
 
 	sa.sin_family = AF_INET;
-	sa.sin_port = htons(1100);
+	sa.sin_port = htons(config.port);
 	sa.sin_addr.s_addr = htonl(INADDR_ANY);
 
 	if (bind(SocketFD, (struct sockaddr *)&sa, sizeof sa) == -1) {
