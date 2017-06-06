@@ -14,6 +14,7 @@
 Deck::Deck() {
     mCards.reserve(52);
     Populate();
+    Shuffle();
 }
 
 /*
