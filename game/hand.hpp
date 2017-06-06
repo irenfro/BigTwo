@@ -25,6 +25,11 @@ class Hand {
          */
         int getCardsLeft();
 
+        /*
+         * Sort hand by Rank then by suit in order from diamond, clubs, hearts, spades  
+         */
+        void sortHand();
+
     protected:
         std::vector<Card*> mCards;
 };

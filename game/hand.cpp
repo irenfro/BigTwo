@@ -63,3 +63,10 @@ void Hand::clean() {
 int Hand::getCardsLeft() {
         return mCards.size();
 }
+
+/*
+ * Sort hand by Rank then by suit in order from diamond, clubs, hearts, spades  
+ */
+void Player::sortHand() {
+    
+}
