@@ -48,7 +48,7 @@ class Card {
              * Returns whether the first argument is
              * to be placed in front of the second argument
              */
-            bool compareCards(const Card* c1, const Card* c2);
+            static bool compareCards(const Card* c1, const Card* c2);
 
         private:
             /*
