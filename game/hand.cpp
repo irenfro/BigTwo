@@ -70,3 +70,13 @@ int Hand::getCardsLeft() {
 void Hand::sortHand() {
     std::sort(mCards.begin(), mCards.end(), Card::compareCards);
 }
+
+/*
+ * Prints whole hand
+ */
+ void Hand::printHand() {
+    std::vector<Card*>::iterator it = mCards.begin();
+    for(; it != mCards.end(); it++) {
+        std::cout << **it << std::endl;
+    }
+ }

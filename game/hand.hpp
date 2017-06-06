@@ -30,6 +30,11 @@ class Hand {
          */
         void sortHand();
 
+        /*
+         * Prints whole hand
+         */
+        void printHand();
+
     protected:
         std::vector<Card*> mCards;
 };
