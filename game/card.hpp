@@ -44,6 +44,12 @@ class Card {
              */
             int getSuit() const;
 
+            /*
+             * Returns whether the first argument is
+             * to be placed in front of the second argument
+             */
+            bool compareCards(const Card* c1, const Card* c2);
+
         private:
             /*
              * Member variable for the card's rank

@@ -23,17 +23,31 @@ Card::Card(rank r, suit s) {
  *      3-10 return regular values
  *      Jack, Queen, King are next highest
  *      Ace, Two are the highest cards
+ *
+ *      Calculates absolute value 
+ *      i.e. Ace of Spaces = 48, 2 of Diamonds = 49
  */
 
 int Card::getWeightedValue() const {
-    int temp = mRank;
+    int val = mRank;
     /*
      * Make Ace and Two high cards
      */
-    if(temp < 3) {
-        temp += 13;
+    if(val < 3) {
+        val += 11;
+    } else {
+        val -= 2;
     }
-    return temp;
+
+    val = (val - 1) * 4 + mSuit;
+    return val;
+}
+/*
+ * @return: BOOL whether the first argument is
+ * to be placed in front of the second argument
+ */
+bool Card::compareCards(const Card* c1, const Card* c2) {
+    return c1->getWeightedValue() > c2->getWeightedValue();
 }
 
 int Card::getValue() const {

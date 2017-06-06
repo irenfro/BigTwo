@@ -68,5 +68,5 @@ int Hand::getCardsLeft() {
  * Sort hand by Rank then by suit in order from diamond, clubs, hearts, spades  
  */
 void Hand::sortHand() {
-    
+    std::sort(mCards.begin(), mCards.end(), Card::compareCards);
 }
