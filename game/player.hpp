@@ -1,8 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-#include "includes.h"
-#include "hand.h"
+#include "includes.hpp"
+#include "hand.hpp"
 
 class Player : public Hand {
 

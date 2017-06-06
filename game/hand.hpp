@@ -1,8 +1,8 @@
 #ifndef HAND_H
 #define HAND_H
 
-#include "card.h"
-#include "includes.h"
+#include "card.hpp"
+#include "includes.hpp"
 
 class Hand {
     public:

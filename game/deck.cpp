@@ -1,4 +1,4 @@
-#include "deck.h"
+#include "deck.hpp"
 
 /*
  * Constructor for the Deck class

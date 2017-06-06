@@ -1,8 +1,8 @@
 #ifndef DECK_H
 #define DECK_H
 
-#include "includes.h"
-#include "hand.h"
+#include "includes.hpp"
+#include "hand.hpp"
 
 class Deck : public Hand {
     public:
