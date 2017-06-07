@@ -9,10 +9,10 @@
  */
 
 #include <algorithm>
+#include <cstdlib> 
 #include <ctime> /* use for randomizer */
 #include <iostream>
 #include <string>
 #include <vector>
-#include <cstdlib> 
 
 #endif
