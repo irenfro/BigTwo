@@ -10,7 +10,8 @@ int main() {
     /*
      * Seed the random shuffle
      */
-    //srand(time(0));
+    std::srand(unsigned(std::time(0)));
+
 
     int players = 0;
     std::string temp;
