@@ -4,6 +4,8 @@
 #include "includes.hpp"
 #include "hand.hpp"
 
+#define STANDARD_NUM_CARDS 52
+
 class Deck : public Hand {
     public:
         Deck();

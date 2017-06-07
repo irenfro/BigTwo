@@ -12,7 +12,7 @@
  *      None
  */
 Deck::Deck() {
-    mCards.reserve(52);
+    mCards.reserve(STANDARD_NUM_CARDS);
     Populate();
     Shuffle();
 }
