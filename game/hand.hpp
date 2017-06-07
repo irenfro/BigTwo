@@ -35,8 +35,18 @@ class Hand {
          */
         void printHand();
 
+        /*
+         * Getter and Setter for numCards
+         */
+        void setNumCards(int);
+
+        int getNumCards();
+
     protected:
         std::vector<Card*> mCards;
+    
+    private:
+        int numCards;
 };
 
 #endif

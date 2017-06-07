@@ -8,7 +8,7 @@ Hand::Hand() {
      * Make sure the vector can hold the 
      * 13 cards for 4 players
      */
-    mCards.reserve(13);
+    mCards.reserve(numCards);
 }
 
 /*
@@ -73,6 +73,12 @@ void Hand::sortHand() {
 
 /*
  * Prints whole hand
+ *
+ * @params:
+ *      None
+ *
+ * @return:
+ *      None
  */
  void Hand::printHand() {
     std::vector<Card*>::iterator it = mCards.begin();
@@ -80,3 +86,29 @@ void Hand::sortHand() {
         std::cout << **it << std::endl;
     }
  }
+
+/*
+ * Sets the value for numCards
+ *
+ * @params:
+ *      x -> the number of cards each player will have in their hand
+ *
+ * @return:
+ *      None
+ */
+void Hand::setNumCards(int x) {
+    numCards = x;
+}
+
+/*
+ * Returns the value of numCards
+ *
+ * @params:
+ *      None
+ *
+ * @return:
+ *      the value of numCards
+ */
+int Hand::getNumCards() {
+    return numCards;
+}
