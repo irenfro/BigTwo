@@ -6,13 +6,6 @@
 
 int main() {
     std::cout << "BigTwo" << std::endl;
-    /*-----------Keep-----------*/
-    /*
-     * Seed the random shuffle
-     */
-    std::srand(unsigned(std::time(0)));
-
-
     int players = 0;
     std::string temp;
     while(players < 1 || players > 5) {
@@ -44,7 +37,7 @@ int main() {
          std::cin >> playAgain;
     } while(playAgain == 'y' || playAgain == 'Y');
     
-
+    /*----------For testing purposes----------*/
     Deck deck;
     Hand hand;
     hand.setNumCards(13);
