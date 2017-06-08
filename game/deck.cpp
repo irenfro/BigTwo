@@ -44,7 +44,19 @@ void Deck::Populate() {
  * Shuffles the cards in the deck
  */
 void Deck::Shuffle() {
-    random_shuffle(mCards.begin(), mCards.end());
+    //seed the random number generator
+    std::random_device rd;
+    std::mt19937_64 gen(rd());
+    int counter = mCards.size()-1;
+    for (std::vector<Card*>::iterator it = mCards.begin(); it != mCards.end(); it++, counter--) {
+        // get int distribution with new range
+        std::uniform_int_distribution<> dis(0, counter);
+        const int randomIndex = dis(gen);
+
+        if (*it != mCards.at(randomIndex)) {
+            std::swap(mCards.at(randomIndex), *it);
+        }
+    }
 }
 
 /*
