@@ -13,8 +13,8 @@
  */
 Deck::Deck() {
     mCards.reserve(STANDARD_NUM_CARDS);
-    Populate();
-    Shuffle();
+    populate();
+    shuffle();
 }
 
 /*
@@ -31,7 +31,7 @@ Deck::~Deck() {}
  * @return:
  *      None
  */
-void Deck::Populate() {
+void Deck::populate() {
     clean();
     for(int s = Card::DIAMONDS; s <= Card::SPADES; s++) {
         for(int r = Card::ACE; r <= Card::KING; r++) {
@@ -43,7 +43,7 @@ void Deck::Populate() {
 /*
  * Shuffles the cards in the deck
  */
-void Deck::Shuffle() {
+void Deck::shuffle() {
     //seed the random number generator
     std::random_device rd;
     std::mt19937_64 gen(rd());
@@ -68,7 +68,7 @@ void Deck::Shuffle() {
  * @return:
  *      None
  */
-void Deck::Deal(Hand& h) {
+void Deck::deal(Hand& h) {
     if(!mCards.empty()) {
         h.add(mCards.back());
         mCards.pop_back();

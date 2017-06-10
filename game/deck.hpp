@@ -15,17 +15,17 @@ class Deck : public Hand {
         /*
          * Create a standard deck of cards
          */
-        void Populate();
+        void populate();
 
         /*
          * Shuffle the deck
          */
-        void Shuffle();
+        void shuffle();
 
         /*
          * Deal a card to the hand
          */
-        void Deal(Hand& h);
+        void deal(Hand& h);
 };
 
 #endif
