@@ -28,21 +28,26 @@ int main() {
     /*
      * Start a game with the vector of player names
      */
+    Game g(playerNames);
     char playAgain;
     do {
         /*
          * Start game loop
          */
+         g.play();
+
          std::cout << "Would you like to play again? (Y/N): ";
          std::cin >> playAgain;
     } while(playAgain == 'y' || playAgain == 'Y');
     
+    exit(0);
+
     /*----------For testing purposes----------*/
     Deck deck;
     Hand hand;
     hand.setNumCards(13);
     for(int i = 0; i < 13; i++) {
-    	deck.Deal(hand);
+    	deck.deal(hand);
 	}
 	hand.sortHand();
 	hand.printHand();
