@@ -82,9 +82,13 @@ void Hand::sortHand() {
  */
  void Hand::printHand() {
     std::vector<Card*>::iterator it = mCards.begin();
-    for(; it != mCards.end(); it++) {
-        std::cout << **it << std::endl;
+    for(int i = 1; it != mCards.end(); it++, i++) {
+        std::cout << **it << "\t";
+        if(i % NUM_CARDS_PER_LINE == 0) {
+            std::cout << std::endl;
+        }
     }
+    std::cout << std::endl;
  }
 
 /*

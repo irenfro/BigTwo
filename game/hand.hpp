@@ -44,6 +44,7 @@ class Hand {
 
     protected:
         std::vector<Card*> mCards;
+        const static int NUM_CARDS_PER_LINE = 8;
     
     private:
         int numCards;
