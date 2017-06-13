@@ -21,7 +21,7 @@ int main(void) {
 	memset(&sa, 0, sizeof sa);
 
 	sa.sin_family = AF_INET;
-	sa.sin_port = htons(1100);
+	sa.sin_port = htons(8888);
 	res = inet_pton(AF_INET, "localhost", &sa.sin_addr);
 
 	if (connect(SocketFD, (struct sockaddr *)&sa, sizeof sa) == -1) {

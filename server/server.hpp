@@ -1,4 +1,5 @@
 #include <string>
+#include "config.hpp"
 
 class Server {
 	private:
@@ -9,5 +10,5 @@ class Server {
 		Server(Config const& config);
 		~Server() noexcept;
 
-		void run() const;
+		void run();
 };

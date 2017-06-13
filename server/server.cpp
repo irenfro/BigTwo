@@ -5,6 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <unistd.h>
+#include <string.h>
 
 #include "server.hpp"
 
@@ -16,7 +17,7 @@ Server::Server(Config const& config) : m_config(config) {
 		exit(EXIT_FAILURE);
 	}
 
-	m_master = socket_fd;
+	m_master = SocketFD;
 
 	memset(&sa, 0, sizeof sa);
 
@@ -36,12 +37,18 @@ Server::Server(Config const& config) : m_config(config) {
 		exit(EXIT_FAILURE);
 	}
 
+}
+
+Server::~Server() {
+}
+
+void Server::run() {
 	for (;;) {
-		int ConnectFD = accept(SocketFD, NULL, NULL);
+		int ConnectFD = accept(m_master, NULL, NULL);
 		
 		if (0 > ConnectFD) {
 			perror("Accept failed.");
-			close(SocketFD);
+			close(m_master);
 			exit(EXIT_FAILURE);
 		}
 
@@ -52,11 +59,10 @@ Server::Server(Config const& config) : m_config(config) {
 		if (shutdown(ConnectFD, SHUT_RDWR) == -1) {
 			perror("Shutdown failed.");
 			close(ConnectFD);
-			close(SocketFD);
+			close(m_master);
 			exit(EXIT_FAILURE);
 		}
 		close(ConnectFD);
 	}
-	close(SocketFD);
-	return EXIT_SUCCESS;
+	close(m_master);
 }
