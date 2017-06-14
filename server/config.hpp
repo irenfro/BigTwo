@@ -7,6 +7,7 @@ private:
 public:
 	bool verbose = false;
 	unsigned short port = 0;
+	std::string ip;
 
 	Config(int argc, char** argv);
 };

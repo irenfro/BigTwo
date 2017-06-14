@@ -1,5 +1,5 @@
 #include <string>
-#include "config.hpp"
+#include "includes.hpp"
 
 class Server {
 	private:

@@ -7,7 +7,9 @@
 #include <string.h>
 #include <unistd.h>
 
-int main(void) {
+#include "includes.hpp"
+
+Client::Client(Config const& config) : m_config(config) {
 	struct sockaddr_in sa;
 	int res;
 	int SocketFD;
@@ -21,8 +23,8 @@ int main(void) {
 	memset(&sa, 0, sizeof sa);
 
 	sa.sin_family = AF_INET;
-	sa.sin_port = htons(8888);
-	res = inet_pton(AF_INET, "localhost", &sa.sin_addr);
+	sa.sin_port = htons(m_config.port);
+	res = inet_pton(AF_INET, m_config.ip, &sa.sin_addr);
 
 	if (connect(SocketFD, (struct sockaddr *)&sa, sizeof sa) == -1) {
 		perror("Connect failed.");
@@ -37,4 +39,7 @@ int main(void) {
 	shutdown(SocketFD, SHUT_RDWR);
 	close(SocketFD);
 	return EXIT_SUCCESS;
+}
+
+Client::~Client() {
 }

@@ -2,7 +2,7 @@
 #include <getopt.h>
 #include <sys/socket.h>
 
-#include "config.hpp"
+#include "includes.hpp"
 
 void Config::set_opt(int shortopt, char const* optarg) {
 	switch (shortopt) {
@@ -15,6 +15,9 @@ void Config::set_opt(int shortopt, char const* optarg) {
 				perror("Invalid port");
 				exit(EXIT_FAILURE);
 			}
+			break;
+		case 'i':
+			ip = optarg;
 			break;
 	}
 }
