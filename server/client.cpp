@@ -7,7 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
-#include "includes.hpp"
+#include "client.hpp"
 
 Client::Client(Config const& config) : m_config(config) {
 	struct sockaddr_in sa;
@@ -38,7 +38,6 @@ Client::Client(Config const& config) : m_config(config) {
 
 	shutdown(SocketFD, SHUT_RDWR);
 	close(SocketFD);
-	return EXIT_SUCCESS;
 }
 
 Client::~Client() {

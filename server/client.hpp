@@ -1,7 +1,10 @@
-#include <string>
-#include "includes.hpp"
+#ifndef CLIENT_H
+#define CLIENT_H
 
-class Config {
+#include <string>
+#include "config.hpp"
+
+class Client {
 	private:
 		Config const& m_config;
 
@@ -9,3 +12,5 @@ class Config {
 		Client(Config const& config);
 		~Client() noexcept;
 };
+
+#endif

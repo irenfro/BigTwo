@@ -1,5 +1,8 @@
+#ifndef SERVER_H
+#define SERVER_H
+
 #include <string>
-#include "includes.hpp"
+#include "config.hpp"
 
 class Server {
 	private:
@@ -12,3 +15,5 @@ class Server {
 
 		void run();
 };
+
+#endif

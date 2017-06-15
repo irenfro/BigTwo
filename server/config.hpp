@@ -1,3 +1,6 @@
+#ifndef CONFIG_H
+#define CONFIG_H
+
 #include <string>
 
 class Config {
@@ -7,7 +10,9 @@ private:
 public:
 	bool verbose = false;
 	unsigned short port = 0;
-	std::string ip;
+	const char* ip;
 
-	Config(int argc, char** argv);
+	Config(int argc, char const** argv);
 };
+
+#endif

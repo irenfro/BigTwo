@@ -2,7 +2,7 @@
 #include <getopt.h>
 #include <sys/socket.h>
 
-#include "includes.hpp"
+#include "config.hpp"
 
 void Config::set_opt(int shortopt, char const* optarg) {
 	switch (shortopt) {
@@ -22,7 +22,7 @@ void Config::set_opt(int shortopt, char const* optarg) {
 	}
 }
 
-Config::Config(int argc, char** argv) {
+Config::Config(int argc, char const** argv) {
 	int i;
 	for (i = 0; i < argc - 1; i += 2) {
 		set_opt(argv[i][0], argv[i + 1]);

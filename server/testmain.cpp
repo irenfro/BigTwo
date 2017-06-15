@@ -1,6 +1,9 @@
 #include <string>
+#include <iostream>
 
-#include "includes.hpp"
+#include "server.hpp"
+#include "client.hpp"
+#include "config.hpp"
 
 using std::cout;
 using std::cin;
@@ -19,7 +22,7 @@ int main(void) {
 	if (choice == '1') {
 		cout << "\nEnter a port: ";
 		cin >> inp;
-		char* argv[] = {"p", inp};
+		const char* argv[] = {"p", inp.c_str()};
 		Config c = Config(2, argv);
 		Server s = Server(c);
 		s.run();
@@ -30,7 +33,7 @@ int main(void) {
 		cin >> ip;
 		cout << "\nEnter a port: ";
 		cin >> inp;
-		char* argv[] = {"i", ip, "p", inp};
+		const char* argv[] = {"i", ip.c_str(), "p", inp.c_str()};
 		Config c = Config(4, argv);
 		Client cl = Client(c);
 	}
