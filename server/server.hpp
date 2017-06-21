@@ -11,7 +11,7 @@ class Server {
 		int turn;
 		fd_set readfds;
 		int max_clients;
-		int[] client_socket;
+		int client_socket[3];
 
 	public:
 		Server(Config const& config);

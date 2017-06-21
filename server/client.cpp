@@ -2,6 +2,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -9,10 +10,14 @@
 
 #include "client.hpp"
 
+using std::cout;
+using std::cin;
+
 Client::Client(Config const& config) : m_config(config) {
 	struct sockaddr_in sa;
 	int res;
 	int SocketFD;
+	char buffer[1025];
 	
 	SocketFD = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP);
 	if (SocketFD == -1) {
@@ -35,6 +40,21 @@ Client::Client(Config const& config) : m_config(config) {
 	fprintf(stderr, "Connected!");
 
 	/* read and write operations go here... */
+	int done = 0;
+
+	while(!done) {
+		int status = recv(SocketFD, buffer, sizeof(buffer), 0);
+		if (status < 0) {
+			puts("Receive failed.");
+			exit(EXIT_FAILURE);
+		}
+		else if (status == 0) {
+			done = 1;
+		}
+		else {
+			cout << buffer;
+		}
+	}
 
 	shutdown(SocketFD, SHUT_RDWR);
 	close(SocketFD);

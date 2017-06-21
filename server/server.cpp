@@ -12,7 +12,6 @@
 Server::Server(Config const& config) : m_config(config) {
 	turn = 0;
 	max_clients = 3;
-	client_socket[3];
 
 	int i;
 	for (i = 0; i < max_clients; i++) {
@@ -58,11 +57,21 @@ Server::~Server() {
 }
 
 void Server::run() {
+	int activity = 0;
+	int new_socket = 0;
+	int addrlen = 0;
+	int max_sd = 0;
+	struct sockaddr_in address;
+	char* message = "Welcome to Big Two!\r\n";
+	int sd;
+	int valread;
+	char buffer[1025];
+
 	for (;;) {
 		FD_ZERO(&readfds);
 
-		FD_SET(m_socket, &readfds);
-		max_sd = m_socket;
+		FD_SET(m_master, &readfds);
+		max_sd = m_master;
 		
 		int i;
 		for (i = 0; i < max_clients; i++) {
@@ -76,6 +85,59 @@ void Server::run() {
 			}
 		}
 
+		activity = select(max_sd + 1, &readfds, NULL, NULL, NULL);
+		
+		if ((activity < 0) && (errno != EINTR)) {
+			printf("Select failed.");
+		}
+
+		if (FD_ISSET(m_master, &readfds)) {
+			if ((new_socket = accept(m_master,
+				(struct sockaddr*)&address, (socklen_t*)&addrlen)) < 0) {
+				perror("Accept failed.");
+				exit(EXIT_FAILURE);
+			}
+
+			printf("New Connection\nSocket File Descriptor: %d\nIP Address: %s\nPort: %d\n",
+				new_socket, inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+
+			if (send(new_socket, message, strlen(message), 0) != strlen(message)) {
+				perror("Send failed.");
+			}
+			
+			puts("Welcome message sent successfully\n");
+
+			for (i = 0; i < max_clients; i++) {
+				if (client_socket[i] == 0) {
+					client_socket[i] = new_socket;
+					printf("Adding to list of sockets as %d\n", i);
+					break;
+				}
+			}
+		}
+
+		for (i = 0; i < max_clients; i++) {
+			sd = client_socket[i];
+			
+			if (FD_ISSET(sd, &readfds)) {
+				if ((valread = read(sd, buffer, 1024)) == 0) {
+					getpeername(sd, (struct sockaddr*)&address, \
+						(socklen_t*)&addrlen);
+						printf("Host Disconnected\nIP Address: %s\nPort: %d\n",
+						inet_ntoa(address.sin_addr), ntohs(address.sin_port));
+
+					close(sd);
+					client_socket[i] = 0;
+				}
+				else {
+					buffer[valread] = '\0';
+					send(sd, buffer, strlen(buffer), 0);
+				}
+			}
+		}
+
+		/*
+
 		int ConnectFD = accept(m_master, NULL, NULL);
 		
 		if (0 > ConnectFD) {
@@ -86,9 +148,13 @@ void Server::run() {
 
 		fprintf(stderr, "Accepted!");
 
+		*/
+
 		/* read and write here */
 
 		/* end read/write */
+
+		/*
 
 		if (shutdown(ConnectFD, SHUT_RDWR) == -1) {
 			perror("Shutdown failed.");
@@ -97,6 +163,8 @@ void Server::run() {
 			exit(EXIT_FAILURE);
 		}
 		close(ConnectFD);
+
+		*/
 	}
 	close(m_master);
 }
